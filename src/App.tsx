@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Ingredients from './containers/Ingredients.tsx';
-import Burger from './components/Burger/Burger.tsx';
+import Ingredients from './containers/Ingredients';
+import Burger from './components/Burger/Burger';
 import './App.css';
 
 const App: React.FC = () => {
@@ -27,10 +27,10 @@ const App: React.FC = () => {
 
     const calculatePrice = () => {
         const basePrice = 30;
-        const prices = { Salad: 10, Cheese: 50, Meat: 80, Bacon: 60 };
+        const prices: { [key: string]: number } = { Salad: 10, Cheese: 50, Meat: 80, Bacon: 60 };
         let total = basePrice;
         for (const [ingredient, count] of Object.entries(burgerIngredients)) {
-            total += (prices as any)[ingredient] * count;
+            total += prices[ingredient] * count;
         }
         return total;
     };
@@ -49,4 +49,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
